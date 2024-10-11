@@ -5,10 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.noteapp.R
 import com.example.noteapp.databinding.FragmentOnBoardBinding
 import com.example.noteapp.ui.adapter.OnBoardPagerAdapter
+import com.example.noteapp.utils.PreferenceHelper
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -16,6 +18,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 class OnBoardFragment : Fragment() {
 
     private lateinit var binding: FragmentOnBoardBinding
+    private lateinit var sharedPreferences: PreferenceHelper
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,12 +30,17 @@ class OnBoardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initialize()
-        setupListener()
-        dotsIndicator()
+        sharedPreferences = PreferenceHelper()
+        sharedPreferences.init(requireContext())
+
+        if (sharedPreferences.isOnBoardingCompleted()) {
+            findNavController().navigate(R.id.action_onBoardFragment_to_noteFragment)
+        } else {
+            initialize()
+            setupListener()
+            dotsIndicator()
+        }
     }
-
-
 
     private fun initialize() {
         binding.viewpanger2.adapter = OnBoardPagerAdapter(this)
@@ -56,10 +64,14 @@ class OnBoardFragment : Fragment() {
                 }
             }
         })
+        binding.btnStart.setOnClickListener {
+            sharedPreferences.setOnBoardingCompleted(true)
+            findNavController().navigate(R.id.action_onBoardFragment_to_noteFragment)
+        }
     }
+
     private fun dotsIndicator() = with(binding.viewpanger2) {
-        TabLayoutMediator(binding.tabLayout, binding.viewpanger2) { tab, position ->
-        }.attach()
+        TabLayoutMediator(binding.tabLayout, binding.viewpanger2) { tab, position -> }.attach()
         registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
@@ -68,6 +80,7 @@ class OnBoardFragment : Fragment() {
         })
         updateDotsIndicator(binding.tabLayout, 0)
     }
+
     private fun updateDotsIndicator(tabLayout: TabLayout, selectedPosition: Int) {
         for (i in 0 until tabLayout.tabCount) {
             val tab = tabLayout.getTabAt(i)
