@@ -13,8 +13,8 @@ class PreferenceHelper {
         get() = sharedPreferences.getBoolean("text", false)
         set(value) = sharedPreferences.edit().putBoolean("text", value).apply()
 
-    fun setOnBoardingCompleted(isCompleted: Boolean) {
-        sharedPreferences.edit().putBoolean("onBoardingCompleted", isCompleted).apply()
+    fun setOnBoardingCompleted(b: Boolean) {
+        sharedPreferences.edit().putBoolean("onBoardingCompleted", text).apply()
     }
 
     fun isOnBoardingCompleted(): Boolean {

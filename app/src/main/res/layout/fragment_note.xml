@@ -62,6 +62,7 @@
         />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_add"
         android:layout_width="80dp"
         android:layout_height="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -73,5 +74,11 @@
         android:layout_marginBottom="27dp"
         android:layout_marginEnd="27dp"
         android:background="@drawable/btn_background"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_note"
+        android:layout_width="match_parent"
+        android:layout_height="580dp"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

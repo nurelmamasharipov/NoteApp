@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="12dp"
+    android:background="@drawable/item_bg"
+    android:layout_height="100dp">
+
+    <TextView
+        android:id="@+id/txt_name"
+        android:layout_width="370dp"
+        android:layout_height="22dp"
+        android:text="План на жизнь:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="12dp"/>
+
+    <TextView
+        android:id="@+id/txt_about"
+        android:layout_width="370dp"
+        android:layout_height="20dp"
+        android:textSize="16dp"
+        android:text="Посадить сына, вырастить дом, построить дерево. Нужно..."
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_name"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        />
+
+    <TextView
+        android:id="@+id/tvData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="30 мая 17:21"
+        android:textColor="#434343"
+        app:layout_constraintStart_toStartOf="@id/txt_name"
+        app:layout_constraintTop_toBottomOf="@id/txt_about"
+        android:layout_marginTop="8dp"
+        android:textSize="14sp"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
