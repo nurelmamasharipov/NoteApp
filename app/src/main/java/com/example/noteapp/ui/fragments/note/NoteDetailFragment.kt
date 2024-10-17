@@ -1,6 +1,7 @@
 package com.example.noteapp.ui.fragments.note
 
 import android.os.Bundle
+import android.provider.ContactsContract
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,8 @@ import com.example.noteapp.App
 import com.example.noteapp.R
 import com.example.noteapp.data.models.NoteModel
 import com.example.noteapp.databinding.FragmentNoteDetailBinding
+import java.text.SimpleDateFormat
+import java.util.Date
 
 
 class NoteDetailFragment : Fragment() {
@@ -31,15 +34,19 @@ class NoteDetailFragment : Fragment() {
             binding.tvSave.visibility = View.VISIBLE
         }
         setupListener()
-
     }
+
     private fun setupListener() = with(binding) {
             tvSave.setOnClickListener {
                 val title = titleEditText.text.toString()
                 val text = textEditText.text.toString()
-                val data = tvDate.text.toString()
+                val data = getCurrentTime()
                 App.appDataBase?.noteDao()?.insertNote(NoteModel(title, text, data))
                 findNavController().navigateUp()
             }
         }
+    private fun getCurrentTime(): String {
+        val date = SimpleDateFormat("dd MMMM HH:mm")
+        return date.format(Date())
+    }
     }

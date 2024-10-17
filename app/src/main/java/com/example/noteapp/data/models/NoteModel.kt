@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter
 data class NoteModel(
     val title: String,
     val description: String,
-    val date: String = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd MMM HH:mm"))
+    val date: String
 ){
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
