@@ -1,5 +1,6 @@
 package com.example.noteapp.ui.fragments.note
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,13 +10,15 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.noteapp.App
 import com.example.noteapp.R
+import com.example.noteapp.data.models.NoteModel
 import com.example.noteapp.databinding.FragmentNoteBinding
 import com.example.noteapp.ui.adapter.NoteAdapter
+import com.example.noteapp.ui.intetface.OnClickItem
 
-class NoteFragment : Fragment() {
+class NoteFragment : Fragment(), OnClickItem {
 
     private lateinit var binding: FragmentNoteBinding
-    private val noteAdapter = NoteAdapter()
+    private val noteAdapter = NoteAdapter(this, this)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
@@ -47,5 +50,28 @@ class NoteFragment : Fragment() {
         App.appDataBase?.noteDao()?.getAll()?.observe(viewLifecycleOwner) { listNote ->
             noteAdapter.submitList(listNote)
         }
+    }
+
+    override fun OnLongClick(noteModel: NoteModel) {
+        val builder = AlertDialog.Builder(requireContext())
+        with(builder) {
+            setTitle("Удалить заметку?")
+            setPositiveButton("Удалить") { _, _ ->
+                App.appDataBase?.noteDao()?.deleteNote(noteModel)
+                }
+            App.appDataBase?.noteDao()?.getAll()?.observe(viewLifecycleOwner) { listNote ->
+                noteAdapter.submitList(listNote)
+            }
+            setNegativeButton("Отмена") { dialog, _ ->
+                dialog.cancel()
+            }
+            show()
+        }
+        builder.create()
+    }
+
+    override fun onClick(noteModel: NoteModel) {
+        val action = NoteFragmentDirections.actionNoteFragmentToNoteDetailFragment(noteModel.id)
+        findNavController().navigate(action)
     }
 }
