@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="162dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#5B5B5B"
+    android:paddingHorizontal="6dp"
+    android:layout_gravity="end"
+    android:layout_height="136dp">
+    
+    <TextView
+        android:id="@+id/tv_color"
+        android:layout_width="90dp"
+        android:layout_height="18dp"
+        android:text="Поменять цвет"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"/>
+    
+    <View
+        android:id="@+id/color_yellow"
+        android:layout_width="44dp"
+        android:layout_height="36dp"
+        android:background="@color/yellow"
+        app:layout_constraintStart_toStartOf="@id/tv_color"
+        app:layout_constraintTop_toBottomOf="@id/tv_color"
+        android:layout_marginTop="8dp"/>
+
+    <View
+        android:id="@+id/color_purple"
+        android:layout_width="44dp"
+        android:layout_height="36dp"
+        android:background="@color/purple"
+        android:layout_marginHorizontal="8dp"
+        app:layout_constraintStart_toEndOf="@id/color_yellow"
+        app:layout_constraintTop_toBottomOf="@id/tv_color"
+        android:layout_marginTop="8dp"/>
+
+    <View
+        android:id="@+id/color_pink"
+        android:layout_width="44dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="8dp"
+        android:background="@color/pink"
+        app:layout_constraintStart_toEndOf="@id/color_purple"
+        app:layout_constraintTop_toBottomOf="@id/tv_color"
+        android:layout_marginTop="8dp"/>
+
+    <View
+        android:id="@+id/color_red"
+        android:layout_width="44dp"
+        android:layout_marginTop="10dp"
+        android:layout_height="36dp"
+        app:layout_constraintStart_toStartOf="@id/tv_color"
+        app:layout_constraintTop_toBottomOf="@id/color_yellow"
+        android:background="@color/red"/>
+
+    <View
+        android:id="@+id/color_green"
+        android:layout_width="44dp"
+        android:layout_marginTop="10dp"
+        android:layout_height="36dp"
+        app:layout_constraintStart_toStartOf="@id/color_purple"
+        app:layout_constraintTop_toBottomOf="@id/color_yellow"
+        android:background="@color/green"/>
+
+    <View
+        android:id="@+id/color_blue"
+        android:layout_width="44dp"
+        android:layout_marginTop="10dp"
+        android:layout_height="36dp"
+        app:layout_constraintStart_toStartOf="@id/color_pink"
+        app:layout_constraintTop_toBottomOf="@id/color_yellow"
+        android:background="@color/blue"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

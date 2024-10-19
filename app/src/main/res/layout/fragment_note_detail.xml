@@ -46,6 +46,8 @@
         android:layout_height="wrap_content"
         android:src="@drawable/baseline_arrow_back_24"/>
 
+
+
     <TextView
         android:visibility="invisible"
         android:id="@+id/tv_save"
@@ -56,7 +58,8 @@
         android:layout_height="wrap_content"
         android:text="Готово"
         android:textColor="#D88B02"
-        android:textSize="18sp"/>
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@id/iv_color"/>
 
     <TextView
         android:id="@+id/tvDate"
@@ -68,7 +71,12 @@
         android:layout_marginStart="10dp"
         android:textColor="@color/white"/>
 
-
-
-
+    <ImageView
+        android:id="@+id/iv_color"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/color"
+        app:layout_constraintTop_toTopOf="@id/tv_save"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="visible"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
