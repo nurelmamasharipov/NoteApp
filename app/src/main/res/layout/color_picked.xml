@@ -12,6 +12,7 @@
         android:layout_width="90dp"
         android:layout_height="18dp"
         android:text="Поменять цвет"
+        android:textStyle="bold"
         android:textColor="@color/white"
         android:textSize="12sp"
         app:layout_constraintTop_toTopOf="parent"

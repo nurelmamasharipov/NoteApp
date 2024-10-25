@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     id("com.google.devtools.ksp")
     id("androidx.navigation.safeargs.kotlin")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -49,6 +50,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.firebase.auth)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -61,5 +63,12 @@ dependencies {
     //Lifecycle
     implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0")
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
+
+    //Firebase
+    implementation(platform("com.google.firebase:firebase-bom:33.4.0"))
+    implementation("com.google.firebase:firebase-analytics")
+
+    //Google Auth
+    implementation("com.google.android.gms:play-services-auth:21.2.0")
 
 }

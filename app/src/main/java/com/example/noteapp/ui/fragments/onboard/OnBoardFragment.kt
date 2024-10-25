@@ -29,12 +29,13 @@ class OnBoardFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         super.onViewCreated(view, savedInstanceState)
         sharedPreferences = PreferenceHelper()
         sharedPreferences.init(requireContext())
 
         if (sharedPreferences.isOnBoardingCompleted()) {
-            findNavController().navigate(R.id.action_onBoardFragment_to_noteFragment)
+            findNavController().navigate(R.id.action_onBoardFragment_to_singUpFragment)
         } else {
             initialize()
             setupListener()
@@ -66,7 +67,7 @@ class OnBoardFragment : Fragment() {
         })
         binding.btnStart.setOnClickListener {
             sharedPreferences.setOnBoardingCompleted(true)
-            findNavController().navigate(R.id.action_onBoardFragment_to_noteFragment)
+            findNavController().navigate(R.id.action_onBoardFragment_to_singUpFragment)
         }
     }
 
