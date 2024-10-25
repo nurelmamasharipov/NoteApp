@@ -18,6 +18,20 @@ class PreferenceHelper {
     }
 
     fun isOnBoardingCompleted(): Boolean {
-        return sharedPreferences.getBoolean("onBoardingCompleted", false)
+        return sharedPreferences.getBoolean("onBoardingCompleted", true)
+    }
+    fun isLinearLayout(): Boolean {
+        return sharedPreferences.getBoolean("isLinearLayout", true)
+    }
+    fun setLinearLayout(isLinearLayout: Boolean) {
+        sharedPreferences.edit().putBoolean("isLinearLayout", isLinearLayout).apply()
+    }
+    fun setRegistered(isRegistered: Boolean) {
+        sharedPreferences.edit().putBoolean("isRegistered", isRegistered).apply()
+    }
+
+
+    fun isRegistered(): Boolean {
+        return sharedPreferences.getBoolean("isRegistered", false)
     }
 }

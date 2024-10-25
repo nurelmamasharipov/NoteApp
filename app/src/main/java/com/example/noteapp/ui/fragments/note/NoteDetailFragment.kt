@@ -2,8 +2,6 @@ package com.example.noteapp.ui.fragments.note
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.provider.ContactsContract
-import android.util.Log
 import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -60,7 +58,6 @@ class NoteDetailFragment : Fragment() {
 
     private fun setupListener() = with(binding) {
         ivColor.setOnClickListener {
-            Log.d("shamal", "ivColor clicked")
             showColorDialog()
         }
             ivBack.setOnClickListener {
@@ -117,12 +114,12 @@ class NoteDetailFragment : Fragment() {
         }
         dialog.show()
 
-        val window =dialog.window
+        val window = dialog.window
         val layoutParams = window?.attributes
 
         layoutParams?.gravity = Gravity.END or Gravity.TOP
-        layoutParams?.x = 100
-        layoutParams?.y = 100
+        layoutParams?.x = 50
+        layoutParams?.y = 200
 
         window?.attributes = layoutParams
     }
