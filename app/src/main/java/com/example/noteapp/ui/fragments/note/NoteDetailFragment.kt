@@ -113,19 +113,10 @@ class NoteDetailFragment : Fragment() {
             dialog.dismiss()
         }
         dialog.show()
-
-        val window = dialog.window
-        val layoutParams = window?.attributes
-
-        layoutParams?.gravity = Gravity.END or Gravity.TOP
-        layoutParams?.x = 50
-        layoutParams?.y = 200
-
-        window?.attributes = layoutParams
     }
 
     private fun getCurrentTime(): String {
         val date = SimpleDateFormat("dd MMMM HH:mm")
         return date.format(Date())
     }
-    }
+}

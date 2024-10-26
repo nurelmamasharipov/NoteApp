@@ -1,14 +1,15 @@
+package com.example.noteapp.ui.fragments.signup
+
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.noteapp.R
 import com.example.noteapp.databinding.FragmentSingUpBinding
@@ -23,9 +24,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.auth
 
-
 class SingUpFragment : Fragment() {
-
     private lateinit var binding: FragmentSingUpBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
@@ -44,10 +43,11 @@ class SingUpFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+
+
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View {
         binding = FragmentSingUpBinding.inflate(inflater, container, false)
         auth = Firebase.auth
         preferenceHelper.init(requireContext())
@@ -66,14 +66,19 @@ class SingUpFragment : Fragment() {
         checkRegistrationStatus()
         setupClickListener()
     }
-
-    private fun setupClickListener() {
-        binding.tvSign.setOnClickListener {
-            val signInIntent = googleSignInClient.signInIntent
-            singInLauncher.launch(signInIntent)
+    private fun checkRegistrationStatus() {
+        if (preferenceHelper.isRegistered()) {
+            findNavController().navigate(R.id.noteFragment)
         }
     }
 
+    private fun setupClickListener() {
+        binding.btnSign.setOnClickListener {
+            val signInIntent = googleSignInClient.signInIntent
+            singInLauncher.launch(signInIntent)
+            Log.d("shamal", "setupClickListener:")
+        }
+    }
     private fun firebaseAuthWithGoogle(idToken: String?) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential)
@@ -93,12 +98,6 @@ class SingUpFragment : Fragment() {
             findNavController().navigate(R.id.noteFragment)
         } else {
             Toast.makeText(requireContext(), "Аутенфикация не удалась", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun checkRegistrationStatus() {
-        if (preferenceHelper.isRegistered()) {
-            findNavController().navigate(R.id.noteFragment)
         }
     }
 }

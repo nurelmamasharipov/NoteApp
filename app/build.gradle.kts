@@ -71,4 +71,7 @@ dependencies {
     //Google Auth
     implementation("com.google.android.gms:play-services-auth:21.2.0")
 
+    //FCM
+    implementation ("com.google.firebase:firebase-messaging:24.0.0")
+
 }
