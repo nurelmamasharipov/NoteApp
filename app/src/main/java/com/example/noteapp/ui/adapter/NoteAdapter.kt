@@ -18,7 +18,7 @@ class NoteAdapter(
             binding.txtName.text = item.title
             binding.txtAbout.text = item.description
             binding.tvData.text = item.date
-            binding.itemBg.setBackgroundColor(item.color)
+            itemView.setBackgroundColor(item.color)
         }
     }
 

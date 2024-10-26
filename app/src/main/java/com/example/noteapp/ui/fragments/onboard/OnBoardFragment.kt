@@ -14,7 +14,6 @@ import com.example.noteapp.utils.PreferenceHelper
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
-
 class OnBoardFragment : Fragment() {
 
     private lateinit var binding: FragmentOnBoardBinding
@@ -29,8 +28,8 @@ class OnBoardFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         super.onViewCreated(view, savedInstanceState)
+
         sharedPreferences = PreferenceHelper()
         sharedPreferences.init(requireContext())
 
@@ -65,6 +64,7 @@ class OnBoardFragment : Fragment() {
                 }
             }
         })
+
         binding.btnStart.setOnClickListener {
             sharedPreferences.setOnBoardingCompleted(true)
             findNavController().navigate(R.id.action_onBoardFragment_to_singUpFragment)

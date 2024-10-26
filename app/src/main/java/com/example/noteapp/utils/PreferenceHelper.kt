@@ -10,11 +10,15 @@ class PreferenceHelper {
         sharedPreferences = context.getSharedPreferences("shared", Context.MODE_PRIVATE)
     }
     var text: Boolean
-        get() = sharedPreferences.getBoolean("text", false)
+        get() = sharedPreferences.getBoolean("text", true)
         set(value) = sharedPreferences.edit().putBoolean("text", value).apply()
 
-    fun setOnBoardingCompleted(b: Boolean) {
-        sharedPreferences.edit().putBoolean("onBoardingCompleted", text).apply()
+    var layoutManager: Boolean
+        get() = sharedPreferences.getBoolean("text", true)
+        set(value) = sharedPreferences.edit().putBoolean("text", value).apply()
+
+    fun setOnBoardingCompleted(completed: Boolean) {
+        sharedPreferences.edit().putBoolean("onBoardingCompleted", completed).apply()
     }
 
     fun isOnBoardingCompleted(): Boolean {
@@ -29,8 +33,6 @@ class PreferenceHelper {
     fun setRegistered(isRegistered: Boolean) {
         sharedPreferences.edit().putBoolean("isRegistered", isRegistered).apply()
     }
-
-
     fun isRegistered(): Boolean {
         return sharedPreferences.getBoolean("isRegistered", false)
     }
